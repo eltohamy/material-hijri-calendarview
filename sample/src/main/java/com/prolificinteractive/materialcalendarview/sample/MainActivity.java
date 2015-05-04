@@ -24,14 +24,15 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity {
 
     private static final List<Route> ROUTES = Arrays.asList(
-        new Route(R.string.title_activity_old_calendar, OldCalendarViewActivity.class),
-        new Route(R.string.title_activity_basic, BasicActivity.class),
+            new Route(R.string.title_activity_old_calendar, OldCalendarViewActivity.class),
+            new Route(R.string.title_activity_basic, BasicActivity.class),
             new Route(R.string.title_activity_range, RangeActivity.class),
             new Route(R.string.title_activity_dynamic_setters, DynamicSettersActivity.class),
             new Route(R.string.title_activity_customize_xml, CustomizeXmlActivity.class),
             new Route(R.string.title_activity_customize_code, CustomizeCodeActivity.class),
             new Route(R.string.title_activity_dialogs, DialogsActivity.class),
-            new Route(R.string.title_activity_decorators, BasicActivityDecorated.class)
+            new Route(R.string.title_activity_decorators, BasicActivityDecorated.class),
+            new Route(R.string.title_activity_extended, ExtendedActivity.class)
     );
 
     @Override
@@ -103,12 +104,12 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public static void showDatePickerDialog(Context context, CalendarDay day,
-        DatePickerDialog.OnDateSetListener callback) {
-        if(day == null) {
+                                            DatePickerDialog.OnDateSetListener callback) {
+        if (day == null) {
             day = new CalendarDay();
         }
         DatePickerDialog dialog = new DatePickerDialog(
-            context, 0, callback, day.getYear(), day.getMonth(), day.getDay()
+                context, 0, callback, day.getYear(), day.getMonth(), day.getDay()
         );
         dialog.show();
     }

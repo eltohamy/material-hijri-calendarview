@@ -1,111 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.prolificinteractive.materialcalendarview.sample">
+    package="com.prolificinteractive.materialcalendarview.sample" >
 
     <application
-        android:supportsRtl="true"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
         <activity
-            android:name="com.prolificinteractive.materialcalendarview.sample.MainActivity"
-            android:label="@string/app_name">
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-      <activity
-          android:name="com.prolificinteractive.materialcalendarview.sample.OldCalendarViewActivity"
-          android:label="@string/title_activity_old_calendar"
-          android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
-
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
-
-      </activity>
-
-      <activity
-          android:name="com.prolificinteractive.materialcalendarview.sample.BasicActivity"
-          android:label="@string/title_activity_basic"
-          android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
-
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
-
-      </activity>
-
         <activity
-            android:name="com.prolificinteractive.materialcalendarview.sample.BasicActivityDecorated"
+            android:name=".OldCalendarViewActivity"
+            android:label="@string/title_activity_old_calendar"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity" />
+        </activity>
+        <activity
+            android:name=".BasicActivity"
+            android:label="@string/title_activity_basic"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity" />
+        </activity>
+        <activity
+            android:name=".BasicActivityDecorated"
             android:label="@string/title_activity_decorators"
-            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
-
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
-
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity" />
         </activity>
-
         <activity
-            android:name="com.prolificinteractive.materialcalendarview.sample.RangeActivity"
+            android:name=".RangeActivity"
             android:label="@string/title_activity_range"
-            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
-
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
-
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity" />
         </activity>
-
         <activity
-            android:name="com.prolificinteractive.materialcalendarview.sample.CustomizeXmlActivity"
+            android:name=".CustomizeXmlActivity"
             android:label="@string/title_activity_customize_xml"
-            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
-
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
-
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity" />
         </activity>
-
         <activity
-            android:name="com.prolificinteractive.materialcalendarview.sample.CustomizeCodeActivity"
+            android:name=".CustomizeCodeActivity"
             android:label="@string/title_activity_customize_code"
-            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
-
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
-
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity" />
         </activity>
-
         <activity
-            android:name="com.prolificinteractive.materialcalendarview.sample.DynamicSettersActivity"
+            android:name=".DynamicSettersActivity"
             android:label="@string/title_activity_dynamic_setters"
-            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
-
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
-
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity" />
         </activity>
-
         <activity
             android:name=".DialogsActivity"
             android:label="@string/title_activity_dialogs"
-            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
-
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
-
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity" />
         </activity>
-
+        <activity
+            android:name=".ExtendedActivity"
+            android:label="@string/title_activity_extended" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
