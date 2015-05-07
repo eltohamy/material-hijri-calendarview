@@ -5,15 +5,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/full_day"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/mcv_day_dark_bg"
-        android:gravity="center"
-        android:padding="8dp"
-        android:textColor="@android:color/white"
-        tools:text="Monday" />
+        android:background="@color/mcv_day_dark_bg">
+
+        <TextView
+            android:id="@+id/full_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textColor="@android:color/white"
+            tools:text="Monday" />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
