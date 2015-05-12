@@ -3,4 +3,5 @@
 
     <color name="mcv_day_dark_bg">#0097a7</color>
     <color name="mcv_day_bg">#00bcd4</color>
+    <color name="mcv_day_light_bg">#99f3ff</color>
 </resources>

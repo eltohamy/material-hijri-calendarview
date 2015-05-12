@@ -59,9 +59,21 @@
             tools:text="2015" />
     </LinearLayout>
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/mcv"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:id="@+id/mcv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:visibility="gone"/>
+    </FrameLayout>
 
 </LinearLayout>
