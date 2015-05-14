@@ -2,9 +2,9 @@ package com.prolificinteractive.materialcalendarview;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -53,6 +55,7 @@ public class ExtendedMaterialCalendarView extends FrameLayout implements
         year = (TextView) view.findViewById(R.id.year);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         year.setOnClickListener(onYearClick);
         mcv.setOnDateChangedListener(this);
         mcv.setOnRangeChangedListener(this);
@@ -146,17 +149,25 @@ public class ExtendedMaterialCalendarView extends FrameLayout implements
         if (onDateChangedListener != null)
             onDateChangedListener.onDateChanged(widget, date);
         previousDay = date;
+
+        adapter.selectedIndex = Arrays.binarySearch(adapter.items, date.getYear());
     }
 
     @Override
     public void onRangeChanged(CalendarDay min, CalendarDay max) {
-        Log.d("MCV", "onRangeChanged");
-//        final int range = max.getYear() - min.getYear() + 1;
-        final int[] items = new int[21];
-        for (int i = 2000; i <= 2020; ++i) {
-            items[i - 2000] = i;
+        // add extra 200 year if there is no max date set
+        final int maxYear;
+        if (max == null) maxYear = min.getYear() + 200;
+        else maxYear = max.getYear();
+
+        // create array of int for year range
+        final int range = maxYear - min.getYear() + 1;
+        final int[] items = new int[range];
+        for (int i = 0; i < range; ++i) {
+            items[i] = min.getYear() + i;
         }
-        adapter = new YearAdapter(items, 16);
+
+        adapter = new YearAdapter(items, mcv == null || mcv.getSelectedDate() == null ? 0 : mcv.getSelectedDate().getYear() - min.getYear());
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -165,6 +176,7 @@ public class ExtendedMaterialCalendarView extends FrameLayout implements
         @Override
         public void onClick(View v) {
             recyclerView.setVisibility(VISIBLE);
+            recyclerView.scrollToPosition(adapter.selectedIndex);
         }
     };
 
@@ -188,6 +200,7 @@ public class ExtendedMaterialCalendarView extends FrameLayout implements
                     parent,
                     false
             );
+            view.setOnClickListener(this);
             return new YearHolder(view);
         }
 
@@ -213,6 +226,11 @@ public class ExtendedMaterialCalendarView extends FrameLayout implements
             selectedIndex = (int) v.getTag();
             notifyItemChanged(selectedIndex);
             recyclerView.setVisibility(GONE);
+
+            final Calendar cal = mcv.getSelectedDate().getCalendar();
+            cal.set(Calendar.YEAR, items[selectedIndex]);
+            mcv.setSelectedDate(cal);
+            setSelectedDate(mcv.getSelectedDate());
         }
 
         @Override
