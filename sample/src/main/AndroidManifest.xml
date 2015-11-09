@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.tohamy.materialhijricalendarview.sample">
+          package="com.prolificinteractive.materialcalendarview.sample">
 
     <application
         android:supportsRtl="true"
@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.tohamy.materialhijricalendarview.sample.MainActivity"
+            android:name="com.prolificinteractive.materialcalendarview.sample.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -19,90 +19,130 @@
         </activity>
 
       <activity
-          android:name="com.tohamy.materialhijricalendarview.sample.OldCalendarViewActivity"
+          android:name="com.prolificinteractive.materialcalendarview.sample.OldCalendarViewActivity"
           android:label="@string/title_activity_old_calendar"
-          android:parentActivityName="com.tohamy.materialhijricalendarview.sample.MainActivity">
+          android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.tohamy.materialhijricalendarview.sample.MainActivity"/>
+            android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
+
+          <intent-filter>
+              <action android:name="android.intent.action.RUN" />
+              <category android:name="com.prolificinteractive.materialcalendarview.sample.SAMPLE" />
+          </intent-filter>
 
       </activity>
 
       <activity
-          android:name="com.tohamy.materialhijricalendarview.sample.BasicActivity"
+          android:name="com.prolificinteractive.materialcalendarview.sample.BasicActivity"
           android:label="@string/title_activity_basic"
-          android:parentActivityName="com.tohamy.materialhijricalendarview.sample.MainActivity">
+          android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.tohamy.materialhijricalendarview.sample.MainActivity"/>
+            android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
+
+          <intent-filter>
+              <action android:name="android.intent.action.RUN" />
+              <category android:name="com.prolificinteractive.materialcalendarview.sample.SAMPLE" />
+          </intent-filter>
 
       </activity>
 
         <activity
-            android:name="com.tohamy.materialhijricalendarview.sample.BasicActivityDecorated"
+            android:name="com.prolificinteractive.materialcalendarview.sample.BasicActivityDecorated"
             android:label="@string/title_activity_decorators"
-            android:parentActivityName="com.tohamy.materialhijricalendarview.sample.MainActivity">
+            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.tohamy.materialhijricalendarview.sample.MainActivity"/>
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+                <category android:name="com.prolificinteractive.materialcalendarview.sample.SAMPLE" />
+            </intent-filter>
 
         </activity>
 
         <activity
             android:name=".DisableDaysActivity"
             android:label="@string/title_activity_disable"
-            android:parentActivityName="com.tohamy.materialhijricalendarview.sample.MainActivity">
+            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.tohamy.materialhijricalendarview.sample.MainActivity"/>
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+                <category android:name="com.prolificinteractive.materialcalendarview.sample.SAMPLE" />
+            </intent-filter>
 
         </activity>
 
         <activity
-            android:name="com.tohamy.materialhijricalendarview.sample.CustomizeXmlActivity"
+            android:name="com.prolificinteractive.materialcalendarview.sample.CustomizeXmlActivity"
             android:label="@string/title_activity_customize_xml"
-            android:parentActivityName="com.tohamy.materialhijricalendarview.sample.MainActivity">
+            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.tohamy.materialhijricalendarview.sample.MainActivity"/>
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+                <category android:name="com.prolificinteractive.materialcalendarview.sample.SAMPLE" />
+            </intent-filter>
 
         </activity>
 
         <activity
-            android:name="com.tohamy.materialhijricalendarview.sample.CustomizeCodeActivity"
+            android:name="com.prolificinteractive.materialcalendarview.sample.CustomizeCodeActivity"
             android:label="@string/title_activity_customize_code"
-            android:parentActivityName="com.tohamy.materialhijricalendarview.sample.MainActivity">
+            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.tohamy.materialhijricalendarview.sample.MainActivity"/>
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+                <category android:name="com.prolificinteractive.materialcalendarview.sample.SAMPLE" />
+            </intent-filter>
 
         </activity>
 
         <activity
-            android:name="com.tohamy.materialhijricalendarview.sample.DynamicSettersActivity"
+            android:name="com.prolificinteractive.materialcalendarview.sample.DynamicSettersActivity"
             android:label="@string/title_activity_dynamic_setters"
-            android:parentActivityName="com.tohamy.materialhijricalendarview.sample.MainActivity">
+            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.tohamy.materialhijricalendarview.sample.MainActivity"/>
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+                <category android:name="com.prolificinteractive.materialcalendarview.sample.SAMPLE" />
+            </intent-filter>
 
         </activity>
 
         <activity
-            android:name=".DialogsActivity"
+            android:name="com.prolificinteractive.materialcalendarview.sample.DialogsActivity"
             android:label="@string/title_activity_dialogs"
-            android:parentActivityName="com.tohamy.materialhijricalendarview.sample.MainActivity">
+            android:parentActivityName="com.prolificinteractive.materialcalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.tohamy.materialhijricalendarview.sample.MainActivity"/>
+                android:value="com.prolificinteractive.materialcalendarview.sample.MainActivity"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+                <category android:name="com.prolificinteractive.materialcalendarview.sample.SAMPLE" />
+            </intent-filter>
 
         </activity>
 
