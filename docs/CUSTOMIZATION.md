@@ -2,7 +2,7 @@ Customization Options
 =====================
 
 ```xml
-<com.github.eltohamy.materialhijricalendarview.MaterialCalendarView
+<com.github.eltohamy.materialhijricalendarview.MaterialHijriCalendarView
     android:id="@+id/calendarView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -65,7 +65,7 @@ Avaliable flags are:
 * `all`: An alias that sets all of the flags
 * `defaults`: An alias of flags set by default. Currently this is only `decorated_disabled`.
 
-There are similar constants on `MaterialCalendarView` such as `MaterialCalendarView.SHOW_DECORATED_DISABLED`.
+There are similar constants on `MaterialHijriCalendarView` such as `MaterialHijriCalendarView.SHOW_DECORATED_DISABLED`.
 
 
 ## Selection Color

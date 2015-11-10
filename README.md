@@ -12,15 +12,15 @@ Usage
 -----
 
 1. Add `compile 'com.github.eltohamy:material-hijri-calendarview:1.1.0'` to your dependencies.
-2. Add `MaterialCalendarView` into your layouts or view hierarchy.
-3. Set a `OnDateSelectedListener` or call `MaterialCalendarView.getSelectedDates()` when you need it.
+2. Add `MaterialHijriCalendarView` into your layouts or view hierarchy.
+3. Set a `OnDateSelectedListener` or call `MaterialHijriCalendarView.getSelectedDates()` when you need it.
 
 [Javadoc Available Here](http://prolificinteractive.github.io/material-hijri-calendarview/)
 
 Example:
 
 ```xml
-<com.github.eltohamy.materialhijricalendarview.MaterialCalendarView
+<com.github.eltohamy.materialhijricalendarview.MaterialHijriCalendarView
     android:id="@+id/calendarView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
