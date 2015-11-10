@@ -1,6 +1,6 @@
 <img src="/images/ic_launcher-web.png" width="300px" />
 
-Material Calendar View [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Material%20Calendar%20View-blue.svg?style=flat)](https://android-arsenal.com/details/1/1531)
+Material Hijri Calendar View [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Material%20Hijri%20Calendar%20View-blue.svg?style=flat)](https://android-arsenal.com/details/1/1531)
 ======================
 
 A Material design back port of Android's Hijri CalendarView. The goal is to have a Material look
