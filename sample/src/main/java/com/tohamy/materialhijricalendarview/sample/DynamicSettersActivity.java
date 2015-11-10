@@ -1,18 +1,21 @@
 package com.tohamy.materialhijricalendarview.sample;
 
-import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.DatePicker;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import com.tohamy.materialhijricalendarview.CalendarDay;
 import com.tohamy.materialhijricalendarview.MaterialCalendarView;
+import com.tohamy.materialhijricalendarview.OnDateSelectedListener;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -28,6 +31,7 @@ public class DynamicSettersActivity extends AppCompatActivity {
     MaterialCalendarView widget;
 
     private int currentTileSize;
+    private SimpleCalendarDialogFragment dialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,39 +94,47 @@ public class DynamicSettersActivity extends AppCompatActivity {
         widget.setShowOtherDates(checked ? MaterialCalendarView.SHOW_ALL : MaterialCalendarView.SHOW_NONE);
     }
 
-    @OnCheckedChanged(R.id.check_page_enabled) 
+    @OnCheckedChanged(R.id.check_page_enabled)
     void onPageEnabledChecked(boolean checked) {
         widget.setPagingEnabled(checked);
     }
 
-    @OnClick(R.id.button_min_date) 
+    @OnClick(R.id.button_min_date)
     void onMinClicked() {
-        showDatePickerDialog(this, widget.getMinimumDate(), new DatePickerDialog.OnDateSetListener() {
+        dialogFragment = SimpleCalendarDialogFragment.getInstance(new OnDateSelectedListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                widget.setMinimumDate(CalendarDay.from(year, monthOfYear, dayOfMonth));
+            public void onDateSelected(@NonNull MaterialCalendarView mWidget, @NonNull CalendarDay date, boolean selected) {
+                widget.setMinimumDate(date);
+                dialogFragment.dismiss();
             }
         });
+        dialogFragment.show(getSupportFragmentManager(), "Set Min Date");
     }
 
     @OnClick(R.id.button_max_date)
     void onMaxClicked() {
-        showDatePickerDialog(this, widget.getMaximumDate(), new DatePickerDialog.OnDateSetListener() {
+        dialogFragment = SimpleCalendarDialogFragment.getInstance(new OnDateSelectedListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                widget.setMaximumDate(CalendarDay.from(year, monthOfYear, dayOfMonth));
+            public void onDateSelected(@NonNull MaterialCalendarView mWidget, @NonNull CalendarDay date, boolean selected) {
+                widget.setMaximumDate(date);
+                dialogFragment.dismiss();
             }
         });
+        dialogFragment.show(getSupportFragmentManager(), "Set Max Date");
+
     }
 
     @OnClick(R.id.button_selected_date)
     void onSelectedClicked() {
-        showDatePickerDialog(this, widget.getSelectedDate(), new DatePickerDialog.OnDateSetListener() {
+        dialogFragment = SimpleCalendarDialogFragment.getInstance(new OnDateSelectedListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                widget.setSelectedDate(CalendarDay.from(year, monthOfYear, dayOfMonth));
+            public void onDateSelected(@NonNull MaterialCalendarView mWidget, @NonNull CalendarDay date, boolean selected) {
+                widget.setSelectedDate(date);
+                dialogFragment.dismiss();
             }
         });
+        dialogFragment.show(getSupportFragmentManager(), "Set Selected Date");
+
     }
 
     @OnClick(R.id.button_toggle_topbar)
@@ -202,14 +214,39 @@ public class DynamicSettersActivity extends AppCompatActivity {
         widget.setFirstDayOfWeek(DAYS_OF_WEEK[index]);
     }
 
-    public static void showDatePickerDialog(Context context, CalendarDay day,
-                                            DatePickerDialog.OnDateSetListener callback) {
-        if (day == null) {
-            day = CalendarDay.today();
+
+    public static class SimpleCalendarDialogFragment extends DialogFragment {
+
+        private TextView textView;
+        private OnDateSelectedListener listener;
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.dialog_basic, container, false);
         }
-        DatePickerDialog dialog = new DatePickerDialog(
-                context, 0, callback, day.getYear(), day.getMonth(), day.getDay()
-        );
-        dialog.show();
+
+
+        public static SimpleCalendarDialogFragment getInstance(OnDateSelectedListener listener) {
+            SimpleCalendarDialogFragment dialogFragment = new SimpleCalendarDialogFragment();
+            dialogFragment.setOnDateSelectedListener(listener);
+            dialogFragment.setArguments(new Bundle());
+            return dialogFragment;
+        }
+
+        @Override
+        public void onViewCreated(View view, Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+
+            textView = (TextView) view.findViewById(R.id.textView);
+
+            MaterialCalendarView widget = (MaterialCalendarView) view.findViewById(R.id.calendarView);
+
+            widget.setOnDateChangedListener(listener);
+        }
+
+
+        public void setOnDateSelectedListener(OnDateSelectedListener listener) {
+            this.listener = listener;
+        }
     }
 }

@@ -17,6 +17,8 @@ import com.tohamy.materialhijricalendarview.OnDateSelectedListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -80,7 +82,8 @@ public class DialogsActivity extends AppCompatActivity {
 
         @Override
         public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-            textView.setText(FORMATTER.format(date.getDate()));
+//            textView.setText(FORMATTER.format(date.getDate()));
+            textView.setText(date.getCalendar().getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()) + " " + date.getCalendar().get(Calendar.DAY_OF_MONTH) + ", " + String.valueOf(date.getYear()));
         }
     }
 }

@@ -13,6 +13,8 @@ import com.tohamy.materialhijricalendarview.OnMonthChangedListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -52,7 +54,8 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
         //noinspection ConstantConditions
         FORMATTER.setCalendar(date.getCalendar());
-        getSupportActionBar().setTitle(FORMATTER.format(date.getCalendar().getTime()));
+//        getSupportActionBar().setTitle(FORMATTER.format(date.getCalendar().getTime()));
+        getSupportActionBar().setTitle(date.getCalendar().getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()) + " " + date.getCalendar().get(Calendar.DAY_OF_MONTH) + ", " + String.valueOf(date.getYear()));
     }
 
     private String getSelectedDatesString() {
@@ -61,6 +64,8 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
             return "No Selection";
         }
         FORMATTER.setCalendar(date.getCalendar());
-        return FORMATTER.format(date.getCalendar().getTime());
+//        return FORMATTER.format(date.getCalendar().getTime());
+        return date.getCalendar().getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()) + " " + date.getCalendar().get(Calendar.DAY_OF_MONTH) + ", " + String.valueOf(date.getYear());
+
     }
 }

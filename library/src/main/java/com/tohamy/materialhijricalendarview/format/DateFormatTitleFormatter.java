@@ -4,6 +4,7 @@ import com.tohamy.materialhijricalendarview.CalendarDay;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Locale;
  */
 public class DateFormatTitleFormatter implements TitleFormatter {
 
-    private final SimpleDateFormat dateFormat;
+    private final DateFormat dateFormat;
 
     /**
      * Format using "MMMM yyyy" for formatting
@@ -37,6 +38,7 @@ public class DateFormatTitleFormatter implements TitleFormatter {
     @Override
     public CharSequence format(CalendarDay day) {
         dateFormat.setCalendar(day.getCalendar());
-        return dateFormat.format(day.getCalendar().getTime());
+//        return dateFormat.format(day.getCalendar().getTime());
+        return day.getCalendar().getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()) + " " + String.valueOf(day.getYear());
     }
 }

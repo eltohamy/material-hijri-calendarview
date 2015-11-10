@@ -37,7 +37,9 @@ public class CalendarUtils {
     @NonNull
     public static UmmalquraCalendar getInstance() {
         UmmalquraCalendar calendar = new UmmalquraCalendar();
-        calendar.setTime(Calendar.getInstance().getTime());
+        Calendar calendar1=Calendar.getInstance();
+        calendar1.setTimeInMillis(System.currentTimeMillis());
+        calendar.setTime(calendar1.getTime());
         copyDateTo(calendar, calendar);
         return calendar;
     }
