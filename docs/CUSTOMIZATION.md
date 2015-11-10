@@ -2,7 +2,7 @@ Customization Options
 =====================
 
 ```xml
-<com.tohamy.materialhijricalendarview.MaterialCalendarView
+<com.github.eltohamy.materialhijricalendarview.MaterialCalendarView
     android:id="@+id/calendarView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

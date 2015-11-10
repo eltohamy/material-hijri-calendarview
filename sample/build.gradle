@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.tohamy.materialhijricalendarview.sample"
+        applicationId "com.github.eltohamy.materialhijricalendarview.sample"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode project.ext.versionCodeInt
