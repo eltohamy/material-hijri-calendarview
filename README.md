@@ -11,11 +11,11 @@ and feel, rather than 100% parity with the platform's implementation.
 Usage
 -----
 
-1. Add `compile 'com.prolificinteractive:material-calendarview:1.1.0'` to your dependencies.
+1. Add `compile 'com.tohamy:material-hijri-calendarview:1.1.0'` to your dependencies.
 2. Add `MaterialCalendarView` into your layouts or view hierarchy.
 3. Set a `OnDateSelectedListener` or call `MaterialCalendarView.getSelectedDates()` when you need it.
 
-[Javadoc Available Here](http://prolificinteractive.github.io/material-calendarview/)
+[Javadoc Available Here](http://prolificinteractive.github.io/material-hijri-calendarview/)
 
 Example:
 
