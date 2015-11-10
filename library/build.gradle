@@ -3,35 +3,35 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "21.1.2"
-      lintOptions {
-          abortOnError false
-      }
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode project.ext.versionCodeInt
         versionName version
     }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:support-v4:23.1.0'
+    compile group: 'com.github.msarhan', name: 'ummalqura-calendar', version:'1.1.7'
+    testCompile 'junit:junit:4.12'
 }
 
 task sourcesJar(type: Jar) {
-  from android.sourceSets.main.java.srcDirs
-  classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
 }
 
 artifacts {
-  archives sourcesJar
+    archives sourcesJar
 }
 
 signing {
-   required { gradle.taskGraph.hasTask("uploadArchives") }
-   sign configurations.archives
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
 }
 
 def getReleaseRepositoryUrl() {
@@ -45,72 +45,75 @@ def getSnapshotRepositoryUrl() {
 }
 
 def getRepositoryUsername() {
-  return hasProperty('sonatypeUsername') ? sonatypeUsername : ""
+    return hasProperty('sonatypeUsername') ? sonatypeUsername : ""
 }
 
 def getRepositoryPassword() {
-  return hasProperty('sonatypePassword') ? sonatypePassword : ""
+    return hasProperty('sonatypePassword') ? sonatypePassword : ""
 }
 
 uploadArchives {
-  repositories.mavenDeployer {
-    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+    repositories.mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-    repository(url: getReleaseRepositoryUrl()) {
-      authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+        repository(url: getReleaseRepositoryUrl()) {
+            authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+        }
+
+        snapshotRepository(url: getSnapshotRepositoryUrl()) {
+            authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+        }
+
+        pom.groupId = GROUP
+        pom.version = version
+        pom.artifactId = POM_ARTIFACT_ID
+
+        pom {
+            project {
+                name POM_NAME
+                packaging POM_PACKAGING
+                description POM_DESCRIPTION
+                url POM_URL
+
+                scm {
+                    url POM_SCM_URL
+                    connection POM_SCM_CONNECTION
+                    developerConnection POM_SCM_DEV_CONNECTION
+                }
+
+                licenses {
+                    license {
+                        name POM_LICENCE_NAME
+                        url POM_LICENCE_URL
+                        distribution POM_LICENCE_DIST
+                    }
+                }
+
+                developers {
+                    developer {
+                        id POM_DEVELOPER_ID
+                        name POM_DEVELOPER_NAME
+                        email POM_DEVELOPER_EMAIL
+                    }
+                }
+
+            }
+        }
     }
-
-      snapshotRepository(url: getSnapshotRepositoryUrl()) {
-          authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
-      }
-
-    pom.groupId = GROUP
-    pom.version = version
-    pom.artifactId = POM_ARTIFACT_ID
-
-    pom {
-      project {
-        name POM_NAME
-        packaging POM_PACKAGING
-        description POM_DESCRIPTION
-        url POM_URL
-
-        scm {
-          url POM_SCM_URL
-          connection POM_SCM_CONNECTION
-          developerConnection POM_SCM_DEV_CONNECTION
-        }
-
-        licenses {
-          license {
-            name POM_LICENCE_NAME
-            url POM_LICENCE_URL
-            distribution POM_LICENCE_DIST
-          }
-        }
-
-        developers {
-          developer {
-            id POM_DEVELOPER_ID
-            name POM_DEVELOPER_NAME
-            email POM_DEVELOPER_EMAIL
-          }
-        }
-
-      }
-    }
-  }
 }
 
 android.libraryVariants.all { variant ->
     task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
+        title "Material CalendarView ${version}"
         description "Generates Javadoc for $variant.name."
         source = variant.javaCompile.source
-        ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
-        classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+        classpath = files(variant.javaCompile.classpath.files, project.android.getBootClasspath())
         exclude '**/BuildConfig.java'
         exclude '**/R.java'
-        options.links("http://docs.oracle.com/javase/7/docs/api/");
-        options.links("http://developer.android.com/reference/");
+        exclude 'android/support/v4/view/BetterViewPager.java'
+        options {
+            links "http://docs.oracle.com/javase/7/docs/api/"
+            linksOffline "http://d.android.com/reference", "${android.sdkDirectory}/docs/reference"
+        }
     }
 }

@@ -1,6 +1,45 @@
 Change Log
 ==========
 
+Version 1.1.0 *(2015-10-19)*
+----------------------------
+
+* New: Ability to disable month swiping with `setPagingEnabled()`
+* Fix [#149](https://github.com/prolificinteractive/material-calendarview/issues/149):
+  save selected dates as a typed List instead of an array.
+* Change: Some preformance optimizations
+
+Version 1.0.1 *(2015-09-30)*
+----------------------------
+
+* Fix [#143](https://github.com/prolificinteractive/material-calendarview/issues/143):
+ flag implementation for `showOtherDates` was a little weird and ambiguous. Clarified and added documentation.
+
+Version 1.0.0 *(2015-09-30)*
+----------------------------
+
+* New: Added ability to select multiple dates or disable selection completely
+* Change: `OnDateChangedListener` has become `OnDateSelectedListener` with different functionality
+* Change: `showOtherDates` is now a integer flag for finer control over which days are shown
+* Change: `CalendarDay.toString()` no longer adds one to the month
+
+Version 0.8.1 *(2015-08-28)*
+----------------------------
+
+* Fix: Setting the topbar to invisible didn't correctly resize the view
+* Change: Made `DayViewFacade` non final for unit test mocking
+
+Version 0.8.0 *(2015-08-21)*
+----------------------------
+
+* Change: The view now responds better to layout parameters.
+The functionality is similar to how `adjustViewBounds` works with ImageView,
+where the view will try and take up as much space as necessary,
+but we base it on tile size instead of an aspect ratio.
+The exception being that if a `tileSize` is set,
+that will override everything and set the view to that size.
+* Fix: Use more efficent method for indexing months
+
 Version 0.7.0 *(2015-07-09)*
 ----------------------------
 

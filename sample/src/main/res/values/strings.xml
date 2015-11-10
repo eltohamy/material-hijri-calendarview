@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">CalendarWidget Sample App</string>
+    <string name="app_name">Material Hijri CalendarView Samples</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_basic">Basic Example</string>
@@ -24,18 +24,18 @@
     </string-array>
 
     <string-array name="custom_months">
-        <item>JAN</item>
-        <item>Feb</item>
-        <item>MARCH</item>
-        <item>April</item>
-        <item>MAY</item>
-        <item>June</item>
-        <item>JULY</item>
-        <item>Aug</item>
-        <item>SEPT</item>
-        <item>Oct</item>
-        <item>Nov</item>
-        <item>DEC</item>
+        <item>Muharram</item>
+        <item>Safar</item>
+        <item>Rabi\' I</item>
+        <item>Rabi\' II</item>
+        <item>Jumada I</item>
+        <item>Jumada II</item>
+        <item>Rajab</item>
+        <item>Sha\'ban</item>
+        <item>Ramadan</item>
+        <item>Shawwal</item>
+        <item>Dhu al-Qi‘dah</item>
+        <item>Dhu al-Hijjah</item>
     </string-array>
 
 </resources>
