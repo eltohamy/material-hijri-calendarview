@@ -104,7 +104,7 @@ uploadArchives {
 
 android.libraryVariants.all { variant ->
     task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
-        title "Material CalendarView ${version}"
+        title "Material Higri CalendarView ${version}"
         description "Generates Javadoc for $variant.name."
         source = variant.javaCompile.source
         classpath = files(variant.javaCompile.classpath.files, project.android.getBootClasspath())
