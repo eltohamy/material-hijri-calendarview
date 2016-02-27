@@ -20,3 +20,4 @@ allprojects {
     ext.versionCodeInt = getProperty('VERSION_CODE').toInteger()
     version = VERSION_NAME
 }
+tasks.findByPath(":library:javadoc").enabled = false
