@@ -1,6 +1,6 @@
 <img src="/images/ic_launcher-web.png" width="300px" />
 
-Material Hijri Calendar View [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Material%20Hijri%20Calendar%20View-blue.svg?style=flat)](https://android-arsenal.com/details/1/1531)
+Material Hijri Calendar View [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Material%20Hijri%20Calendar%20View-blue.svg?style=flat)](https://github.com/eltohamy/material-hijri-calendarview/)
 ======================
 
 A Material design back port of Android's Hijri CalendarView. The goal is to have a Material look
@@ -16,7 +16,7 @@ Usage
 3. Add `MaterialHijriCalendarView` into your layouts or view hierarchy.
 4. Set a `OnDateSelectedListener` or call `MaterialHijriCalendarView.getSelectedDates()` when you need it.
 
-[Javadoc Available Here](http://prolificinteractive.github.io/material-hijri-calendarview/)
+[Javadoc Available Here](https://github.com/eltohamy/material-hijri-calendarview/)
 
 Example:
 
