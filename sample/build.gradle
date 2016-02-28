@@ -12,13 +12,17 @@ android {
         versionName version
     }
 }
-
+repositories {
+    maven {
+        url 'https://dl.bintray.com/el-tohamy/maven/'
+    }
+}
 dependencies {
     // You should use the commented out line below in you're application.
     // We depend on the source directly here so that development is easier.
-    compile project(':library')
-    //compile 'com.prolificinteractive:material-calendarview:1.1.0'
-
+//    compile project(':library')
+    compile 'com.github.eltohamy:material-hijri-calendarview:1.1.0@aar'
+    compile group: 'com.github.msarhan', name: 'ummalqura-calendar', version:'1.1.7'
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:recyclerview-v7:23.1.0'
     compile 'com.jakewharton:butterknife:7.0.1'
