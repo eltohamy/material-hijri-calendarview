@@ -24,22 +24,19 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion 17
+        targetSdkVersion 25
         versionCode project.ext.versionCodeInt
         versionName version
     }
 }
 
 dependencies {
-//    compile 'com.android.support:support-v7:25.3.1'
-    compile 'com.android.support:appcompat-v7:26.0.2'
-    compile 'com.android.support:support-compat:26.0.2'
-    compile 'com.android.support:design:26.0.2'
+    compile 'com.android.support:support-v4:25.2.0'
     compile group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '1.1.7'
     testCompile 'junit:junit:4.12'
 }
