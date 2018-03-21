@@ -13,7 +13,7 @@ ext {
     libraryDescription = 'A Material design back port of Android\'s Hijri CalendarView. The goal is to have a Material look and feel, rather than 100% parity with the platform\'s implementation.'
 
     siteUrl = 'https://github.com/eltohamy/material-hijri-calendarview'
-    gitUrl = 'hhttps://github.com/eltohamy/material-hijri-calendarview.git'
+    gitUrl = 'https://github.com/eltohamy/material-hijri-calendarview.git'
 
     libraryVersion = '1.1.0'
 
@@ -38,21 +38,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:25.3.1'
     compile group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '1.1.7'
     testCompile 'junit:junit:4.12'
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
-
-subprojects {
-    project.configurations.all {
-        resolutionStrategy.eachDependency { details ->
-            if (details.requested.group == 'com.android.support'
-                    && !details.requested.name.contains('multidex') ) {
-                details.useVersion "25.3.1"
-            }
-        }
-    }
-}

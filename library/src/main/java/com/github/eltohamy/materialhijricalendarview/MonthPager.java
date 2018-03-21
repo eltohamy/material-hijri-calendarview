@@ -1,13 +1,13 @@
 package com.github.eltohamy.materialhijricalendarview;
 
 import android.content.Context;
-import android.support.v4.view.BetterViewPager;
+import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
 
 /**
  * Custom ViewPager that allows swiping to be disabled.
  */
-class MonthPager extends BetterViewPager {
+class MonthPager extends ViewPager {
 
     private boolean pagingEnabled = true;
 
