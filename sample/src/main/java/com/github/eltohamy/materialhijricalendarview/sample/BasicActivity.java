@@ -29,6 +29,7 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
     @Bind(R.id.calendarView)
     MaterialHijriCalendarView widget;
 
+
     @Bind(R.id.textView)
     TextView textView;
 

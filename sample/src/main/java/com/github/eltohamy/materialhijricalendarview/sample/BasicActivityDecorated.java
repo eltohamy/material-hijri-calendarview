@@ -33,6 +33,7 @@ public class BasicActivityDecorated extends AppCompatActivity implements OnDateS
     @Bind(R.id.calendarView)
     MaterialHijriCalendarView widget;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
