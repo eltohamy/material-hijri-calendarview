@@ -4,6 +4,8 @@ ext {
     bintrayRepo = 'maven'
     bintrayName = 'material-hijri-calendarview'
 
+    supportlib_version="26.0.2"
+
     publishedGroupId = 'com.github.eltohamy'
     libraryName = 'material-hijri-calendarview'
     artifact = 'material-hijri-calendarview'
@@ -24,22 +26,33 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 17
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode project.ext.versionCodeInt
         versionName version
     }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:25.2.0'
+    compile 'com.android.support:support-v4:26.0.2'
     compile group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '1.1.7'
     testCompile 'junit:junit:4.12'
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+
+subprojects {
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.android.support'
+                    && !details.requested.name.contains('multidex') ) {
+                details.useVersion "25.3.1"
+            }
+        }
+    }
+}
