@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    compile 'com.android.support:support-v4:25.3.1'
     compile group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '1.1.7'
     testCompile 'junit:junit:4.12'
 }
