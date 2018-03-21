@@ -252,27 +252,27 @@ public class MaterialHijriCalendarView extends ViewGroup {
         });
 
         TypedArray a = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.MaterialHijriCalendarView, 0, 0);
+                .obtainStyledAttributes(attrs, R.styleable.MaterialHijriCalendarView_parent, 0, 0);
         try {
 
-            int tileSize = a.getDimensionPixelSize(R.styleable.MaterialHijriCalendarView_mcv_tileSize, -1);
+            int tileSize = a.getDimensionPixelSize(R.styleable.MaterialHijriCalendarView_parent_mcv_tileSize_parent, -1);
             if (tileSize > 0) {
                 setTileSize(tileSize);
             }
 
             setArrowColor(a.getColor(
-                    R.styleable.MaterialHijriCalendarView_mcv_arrowColor,
+                    R.styleable.MaterialHijriCalendarView_parent_mcv_arrowColor_parent,
                     Color.BLACK
             ));
             Drawable leftMask = a.getDrawable(
-                    R.styleable.MaterialHijriCalendarView_mcv_leftArrowMask
+                    R.styleable.MaterialHijriCalendarView_parent_mcv_leftArrowMask_parent
             );
             if (leftMask == null) {
                 leftMask = getResources().getDrawable(R.drawable.mcv_action_previous);
             }
             setLeftArrowMask(leftMask);
             Drawable rightMask = a.getDrawable(
-                    R.styleable.MaterialHijriCalendarView_mcv_rightArrowMask
+                    R.styleable.MaterialHijriCalendarView_parent_mcv_rightArrowMask_parent
             );
             if (rightMask == null) {
                 rightMask = getResources().getDrawable(R.drawable.mcv_action_next);
@@ -281,41 +281,41 @@ public class MaterialHijriCalendarView extends ViewGroup {
 
             setSelectionColor(
                     a.getColor(
-                            R.styleable.MaterialHijriCalendarView_mcv_selectionColor,
+                            R.styleable.MaterialHijriCalendarView_parent_mcv_selectionColor_parent,
                             getThemeAccentColor(context)
                     )
             );
 
-            CharSequence[] array = a.getTextArray(R.styleable.MaterialHijriCalendarView_mcv_weekDayLabels);
+            CharSequence[] array = a.getTextArray(R.styleable.MaterialHijriCalendarView_parent_mcv_weekDayLabels_parent);
             if (array != null) {
                 setWeekDayFormatter(new ArrayWeekDayFormatter(array));
             }
 
-            array = a.getTextArray(R.styleable.MaterialHijriCalendarView_mcv_monthLabels);
+            array = a.getTextArray(R.styleable.MaterialHijriCalendarView_parent_mcv_monthLabels_parent);
             if (array != null) {
                 setTitleFormatter(new MonthArrayTitleFormatter(array));
             }
 
             setHeaderTextAppearance(a.getResourceId(
-                    R.styleable.MaterialHijriCalendarView_mcv_headerTextAppearance,
+                    R.styleable.MaterialHijriCalendarView_parent_mcv_headerTextAppearance_parent,
                     R.style.TextAppearance_MaterialCalendarWidget_Header
             ));
             setWeekDayTextAppearance(a.getResourceId(
-                    R.styleable.MaterialHijriCalendarView_mcv_weekDayTextAppearance,
+                    R.styleable.MaterialHijriCalendarView_parent_mcv_weekDayTextAppearance_parent,
                     R.style.TextAppearance_MaterialCalendarWidget_WeekDay
             ));
             setDateTextAppearance(a.getResourceId(
-                    R.styleable.MaterialHijriCalendarView_mcv_dateTextAppearance,
+                    R.styleable.MaterialHijriCalendarView_parent_mcv_dateTextAppearance_parent,
                     R.style.TextAppearance_MaterialCalendarWidget_Date
             ));
             //noinspection ResourceType
             setShowOtherDates(a.getInteger(
-                    R.styleable.MaterialHijriCalendarView_mcv_showOtherDates,
+                    R.styleable.MaterialHijriCalendarView_parent_mcv_showOtherDates_parent,
                     SHOW_DEFAULTS
             ));
 
             int firstDayOfWeek = a.getInteger(
-                    R.styleable.MaterialHijriCalendarView_mcv_firstDayOfWeek,
+                    R.styleable.MaterialHijriCalendarView_parent_mcv_firstDayOfWeek_parent,
                     -1
             );
             if (firstDayOfWeek < 0) {

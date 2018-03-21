@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="MaterialHijriCalendarView">
+    <declare-styleable name="MaterialHijriCalendarView_parent">
 
-        <attr name="mcv_dateTextAppearance" format="reference"/>
-        <attr name="mcv_weekDayTextAppearance" format="reference"/>
-        <attr name="mcv_headerTextAppearance" format="reference"/>
-        <attr name="mcv_arrowColor" format="color"/>
-        <attr name="mcv_leftArrowMask" format="reference"/>
-        <attr name="mcv_rightArrowMask" format="reference"/>
-        <attr name="mcv_selectionColor" format="color"/>
+        <attr name="mcv_dateTextAppearance_parent" format="reference"/>
+        <attr name="mcv_weekDayTextAppearance_parent" format="reference"/>
+        <attr name="mcv_headerTextAppearance_parent" format="reference"/>
+        <attr name="mcv_arrowColor_parent" format="color"/>
+        <attr name="mcv_leftArrowMask_parent" format="reference"/>
+        <attr name="mcv_rightArrowMask_parent" format="reference"/>
+        <attr name="mcv_selectionColor_parent" format="color"/>
 
-        <attr name="mcv_showOtherDates" format="integer">
+        <attr name="mcv_showOtherDates_parent" format="integer">
             <flag name="none" value="0" />
             <flag name="other_months" value="1" />
             <flag name="out_of_range" value="2" />
@@ -20,12 +20,12 @@
             <flag name="all" value="7" />
         </attr>
 
-        <attr name="mcv_weekDayLabels" format="reference" />
-        <attr name="mcv_monthLabels" format="reference" />
+        <attr name="mcv_weekDayLabels_parent" format="reference" />
+        <attr name="mcv_monthLabels_parent" format="reference" />
 
-        <attr name="mcv_tileSize" format="dimension"/>
+        <attr name="mcv_tileSize_parent" format="dimension"/>
 
-        <attr name="mcv_firstDayOfWeek" format="enum">
+        <attr name="mcv_firstDayOfWeek_parent" format="enum">
             <enum name="sunday" value="1" />
             <enum name="monday" value="2" />
             <enum name="tuesday" value="3" />
