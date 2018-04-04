@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
-import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar;
 import com.github.eltohamy.materialhijricalendarview.CalendarDay;
 import com.github.eltohamy.materialhijricalendarview.MaterialHijriCalendarView;
 import com.github.eltohamy.materialhijricalendarview.OnDateSelectedListener;
@@ -14,13 +13,14 @@ import com.github.eltohamy.materialhijricalendarview.sample.decorators.EventDeco
 import com.github.eltohamy.materialhijricalendarview.sample.decorators.HighlightWeekendsDecorator;
 import com.github.eltohamy.materialhijricalendarview.sample.decorators.MySelectorDecorator;
 import com.github.eltohamy.materialhijricalendarview.sample.decorators.OneDayDecorator;
+import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -30,7 +30,7 @@ public class BasicActivityDecorated extends AppCompatActivity implements OnDateS
 
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
 
-    @Bind(R.id.calendarView)
+    @BindView(R.id.calendarView)
     MaterialHijriCalendarView widget;
 
     @Override

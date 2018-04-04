@@ -10,7 +10,7 @@ import com.github.eltohamy.materialhijricalendarview.MaterialHijriCalendarView;
 
 import java.util.Calendar;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
  */
 public class DisableDaysActivity extends AppCompatActivity {
 
-    @Bind(R.id.calendarView)
+    @BindView(R.id.calendarView)
     MaterialHijriCalendarView widget;
 
     @Override
@@ -44,16 +44,6 @@ public class DisableDaysActivity extends AppCompatActivity {
     }
 
     private static class PrimeDayDisableDecorator implements DayViewDecorator {
-
-        @Override
-        public boolean shouldDecorate(CalendarDay day) {
-            return PRIME_TABLE[day.getDay()];
-        }
-
-        @Override
-        public void decorate(DayViewFacade view) {
-            view.setDaysDisabled(true);
-        }
 
         private static boolean[] PRIME_TABLE = {
                 false,  // 0?
@@ -92,6 +82,16 @@ public class DisableDaysActivity extends AppCompatActivity {
                 false,
                 false, //PADDING
         };
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            return PRIME_TABLE[day.getDay()];
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.setDaysDisabled(true);
+        }
     }
 
     private static class EnableOneToTenDecorator implements DayViewDecorator {

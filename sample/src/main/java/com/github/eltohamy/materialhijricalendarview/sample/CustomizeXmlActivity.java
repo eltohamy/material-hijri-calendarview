@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.github.eltohamy.materialhijricalendarview.MaterialHijriCalendarView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CustomizeXmlActivity extends AppCompatActivity {
 
-    @Bind(R.id.calendarView)
+    @BindView(R.id.calendarView)
     MaterialHijriCalendarView widget;
 
     @Override

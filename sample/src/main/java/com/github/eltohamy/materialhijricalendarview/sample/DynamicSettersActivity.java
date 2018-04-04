@@ -20,16 +20,25 @@ import com.github.eltohamy.materialhijricalendarview.OnDateSelectedListener;
 import java.util.Calendar;
 import java.util.Random;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 public class DynamicSettersActivity extends AppCompatActivity {
 
-    @Bind(R.id.calendarView)
+    private static final int[] DAYS_OF_WEEK = {
+            Calendar.SUNDAY,
+            Calendar.MONDAY,
+            Calendar.TUESDAY,
+            Calendar.WEDNESDAY,
+            Calendar.THURSDAY,
+            Calendar.FRIDAY,
+            Calendar.SATURDAY,
+    };
+    @BindView(R.id.calendarView)
     MaterialHijriCalendarView widget;
-
+    Random random = new Random();
     private int currentTileSize;
     private SimpleCalendarDialogFragment dialogFragment;
 
@@ -142,8 +151,6 @@ public class DynamicSettersActivity extends AppCompatActivity {
         widget.setTopbarVisible(!widget.getTopbarVisible());
     }
 
-    Random random = new Random();
-
     @OnClick(R.id.button_set_colors)
     void onColorsClicked() {
         int color = Color.HSVToColor(new float[]{
@@ -198,16 +205,6 @@ public class DynamicSettersActivity extends AppCompatActivity {
                 .show();
     }
 
-    private static final int[] DAYS_OF_WEEK = {
-            Calendar.SUNDAY,
-            Calendar.MONDAY,
-            Calendar.TUESDAY,
-            Calendar.WEDNESDAY,
-            Calendar.THURSDAY,
-            Calendar.FRIDAY,
-            Calendar.SATURDAY,
-    };
-
     @OnClick(R.id.button_set_first_day)
     void onFirstDayOfWeekClicked() {
         int index = random.nextInt(DAYS_OF_WEEK.length);
@@ -220,17 +217,16 @@ public class DynamicSettersActivity extends AppCompatActivity {
         private TextView textView;
         private OnDateSelectedListener listener;
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.dialog_basic, container, false);
-        }
-
-
         public static SimpleCalendarDialogFragment getInstance(OnDateSelectedListener listener) {
             SimpleCalendarDialogFragment dialogFragment = new SimpleCalendarDialogFragment();
             dialogFragment.setOnDateSelectedListener(listener);
             dialogFragment.setArguments(new Bundle());
             return dialogFragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.dialog_basic, container, false);
         }
 
         @Override

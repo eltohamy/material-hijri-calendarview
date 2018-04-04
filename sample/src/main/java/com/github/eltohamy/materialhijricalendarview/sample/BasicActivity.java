@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -26,10 +26,10 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
 
     private static DateFormat FORMATTER = new SimpleDateFormat("MMM d, y");
 
-    @Bind(R.id.calendarView)
+    @BindView(R.id.calendarView)
     MaterialHijriCalendarView widget;
 
-    @Bind(R.id.textView)
+    @BindView(R.id.textView)
     TextView textView;
 
     @Override

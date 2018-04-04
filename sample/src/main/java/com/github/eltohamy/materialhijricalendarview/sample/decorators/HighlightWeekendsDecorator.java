@@ -4,10 +4,10 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 
-import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar;
 import com.github.eltohamy.materialhijricalendarview.CalendarDay;
 import com.github.eltohamy.materialhijricalendarview.DayViewDecorator;
 import com.github.eltohamy.materialhijricalendarview.DayViewFacade;
+import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar;
 
 import java.util.Calendar;
 
@@ -16,9 +16,9 @@ import java.util.Calendar;
  */
 public class HighlightWeekendsDecorator implements DayViewDecorator {
 
+    private static final int color = Color.parseColor("#228BC34A");
     private final UmmalquraCalendar calendar = new UmmalquraCalendar();
     private final Drawable highlightDrawable;
-    private static final int color = Color.parseColor("#228BC34A");
 
     public HighlightWeekendsDecorator() {
         highlightDrawable = new ColorDrawable(color);

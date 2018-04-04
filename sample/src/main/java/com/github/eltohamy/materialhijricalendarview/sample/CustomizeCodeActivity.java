@@ -10,12 +10,12 @@ import com.github.eltohamy.materialhijricalendarview.format.MonthArrayTitleForma
 
 import java.util.Calendar;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CustomizeCodeActivity extends AppCompatActivity {
 
-    @Bind(R.id.calendarView)
+    @BindView(R.id.calendarView)
     MaterialHijriCalendarView widget;
 
     @Override
