@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/eltohamy/material-hijri-calendarview'
     gitUrl = 'hhttps://github.com/eltohamy/material-hijri-calendarview.git'
 
-    libraryVersion = '1.1.0'
+    libraryVersion = '1.1.1'
 
     developerId = 'eltohamy'
     developerName = 'El-Tohamy Allam'
@@ -29,7 +29,7 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 27
         versionCode project.ext.versionCodeInt
         versionName version
     }
@@ -40,6 +40,5 @@ dependencies {
     implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '1.1.7'
     testImplementation 'junit:junit:4.12'
 }
-
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

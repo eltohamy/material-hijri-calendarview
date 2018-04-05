@@ -25,8 +25,8 @@ allprojects {
         google()
     }
     // Is Release Build?
-//    ext.isReleaseVersion = project.hasProperty("release")
+    ext.isReleaseVersion = project.hasProperty("release")
     ext.versionCodeInt = getProperty('VERSION_CODE').toInteger()
     version = VERSION_NAME
 }
-//tasks.findByPath(":library:javadoc").enabled = false
+tasks.findByPath(":library:javadoc").enabled = false
