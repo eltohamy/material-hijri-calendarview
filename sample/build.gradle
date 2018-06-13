@@ -23,8 +23,8 @@ dependencies {
     implementation project(':library')
 //    implementation 'com.github.eltohamy:material-hijri-calendarview:1.1.1'
     implementation 'com.github.msarhan:ummalqura-calendar:1.1.7'
-    implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.android.support:recyclerview-v7:27.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }
