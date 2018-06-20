@@ -8,12 +8,13 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar;
 import com.github.eltohamy.materialhijricalendarview.MaterialHijriCalendarView.ShowOtherDates;
 import com.github.eltohamy.materialhijricalendarview.format.DayFormatter;
 import com.github.eltohamy.materialhijricalendarview.format.WeekDayFormatter;
+import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -40,6 +41,7 @@ class MonthView extends ViewGroup implements View.OnClickListener {
 
     private final CalendarDay month;
     private int firstDayOfWeek;
+    private int calendarDiff;
     private static final UmmalquraCalendar tempWorkingCalendar = new UmmalquraCalendar();
 
     private CalendarDay minDate = null;
@@ -51,11 +53,12 @@ class MonthView extends ViewGroup implements View.OnClickListener {
     private final ArrayList<DecoratorResult> decoratorResults = new ArrayList<>();
 
 
-    public MonthView(@NonNull MaterialHijriCalendarView view, CalendarDay month, int firstDayOfWeek) {
+    public MonthView(@NonNull MaterialHijriCalendarView view, CalendarDay month, int firstDayOfWeek, int calendarDiff) {
         super(view.getContext());
         this.mcv = view;
         this.month = month;
         this.firstDayOfWeek = firstDayOfWeek;
+        this.calendarDiff = calendarDiff;
 
         setClipChildren(false);
         setClipToPadding(false);
@@ -70,6 +73,7 @@ class MonthView extends ViewGroup implements View.OnClickListener {
         }
 
         calendar = resetAndGetWorkingCalendar();
+        calendar.add(Calendar.DATE, 0 - calendarDiff);
 
         for (int r = 0; r < DEFAULT_MAX_WEEKS; r++) {
             for (int i = 0; i < DEFAULT_DAYS_IN_WEEK; i++) {
@@ -127,7 +131,7 @@ class MonthView extends ViewGroup implements View.OnClickListener {
         }
     }
 
-    private UmmalquraCalendar  resetAndGetWorkingCalendar() {
+    private UmmalquraCalendar resetAndGetWorkingCalendar() {
         month.copyTo(tempWorkingCalendar);
         tempWorkingCalendar.setFirstDayOfWeek(firstDayOfWeek);
         int dow = CalendarUtils.getDayOfWeek(tempWorkingCalendar);
@@ -152,6 +156,7 @@ class MonthView extends ViewGroup implements View.OnClickListener {
         }
 
         calendar = resetAndGetWorkingCalendar();
+
         for (DayView dayView : monthDayViews) {
             CalendarDay day = CalendarDay.from(calendar);
             dayView.setDay(day);

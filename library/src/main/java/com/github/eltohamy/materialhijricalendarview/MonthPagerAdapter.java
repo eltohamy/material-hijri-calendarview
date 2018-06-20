@@ -24,6 +24,7 @@ class MonthPagerAdapter extends PagerAdapter {
     private final ArrayDeque<MonthView> currentViews;
 
     private final MaterialHijriCalendarView mcv;
+    private final int calendarDiff;
     private final CalendarDay today;
 
     private TitleFormatter titleFormatter = null;
@@ -43,8 +44,9 @@ class MonthPagerAdapter extends PagerAdapter {
     private int firstDayOfTheWeek = Calendar.SUNDAY;
     private boolean selectionEnabled = true;
 
-    MonthPagerAdapter(MaterialHijriCalendarView mcv) {
+    MonthPagerAdapter(MaterialHijriCalendarView mcv, int calendarDiff) {
         this.mcv = mcv;
+        this.calendarDiff = calendarDiff;
         this.today = CalendarDay.today();
         currentViews = new ArrayDeque<>();
         currentViews.iterator();
@@ -114,7 +116,7 @@ class MonthPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         CalendarDay month = getItem(position);
-        MonthView monthView = new MonthView(mcv, month, firstDayOfTheWeek);
+        MonthView monthView = new MonthView(mcv, month, firstDayOfTheWeek, calendarDiff);
         monthView.setAlpha(0);
         monthView.setSelectionEnabled(selectionEnabled);
 

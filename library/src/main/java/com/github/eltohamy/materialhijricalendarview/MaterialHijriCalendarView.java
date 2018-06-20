@@ -25,13 +25,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar;
 import com.github.eltohamy.materialhijricalendarview.format.ArrayWeekDayFormatter;
 import com.github.eltohamy.materialhijricalendarview.format.DateFormatTitleFormatter;
 import com.github.eltohamy.materialhijricalendarview.format.DayFormatter;
 import com.github.eltohamy.materialhijricalendarview.format.MonthArrayTitleFormatter;
 import com.github.eltohamy.materialhijricalendarview.format.TitleFormatter;
 import com.github.eltohamy.materialhijricalendarview.format.WeekDayFormatter;
+import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -156,6 +156,7 @@ public class MaterialHijriCalendarView extends ViewGroup {
     private final DirectionButton buttonFuture;
     private final MonthPager pager;
     private final MonthPagerAdapter adapter;
+    private int calendarDiff;
     private CalendarDay currentMonth;
     private LinearLayout topbar;
     /**
@@ -239,7 +240,12 @@ public class MaterialHijriCalendarView extends ViewGroup {
 
         titleChanger = new TitleChanger(title);
         titleChanger.setTitleFormatter(DEFAULT_TITLE_FORMATTER);
-        adapter = new MonthPagerAdapter(this);
+
+        TypedArray a = context.getTheme()
+                .obtainStyledAttributes(attrs, R.styleable.MaterialHijriCalendarView, 0, 0);
+
+        calendarDiff = a.getInteger(R.styleable.MaterialHijriCalendarView_mcv_calendarDiff, 0);
+        adapter = new MonthPagerAdapter(this, calendarDiff);
         adapter.setTitleFormatter(DEFAULT_TITLE_FORMATTER);
         pager.setAdapter(adapter);
         pager.setOnPageChangeListener(pageChangeListener);
@@ -251,8 +257,6 @@ public class MaterialHijriCalendarView extends ViewGroup {
             }
         });
 
-        TypedArray a = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.MaterialHijriCalendarView, 0, 0);
         try {
 
             int tileSize = a.getDimensionPixelSize(R.styleable.MaterialHijriCalendarView_mcv_tileSize, -1);
@@ -334,7 +338,7 @@ public class MaterialHijriCalendarView extends ViewGroup {
 
         if (isInEditMode()) {
             removeView(pager);
-            MonthView monthView = new MonthView(this, currentMonth, getFirstDayOfWeek());
+            MonthView monthView = new MonthView(this, currentMonth, getFirstDayOfWeek(), calendarDiff);
             monthView.setSelectionColor(getSelectionColor());
             monthView.setDateTextAppearance(adapter.getDateTextAppearance());
             monthView.setWeekDayTextAppearance(adapter.getWeekDayTextAppearance());
