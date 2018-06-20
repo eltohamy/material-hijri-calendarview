@@ -34,6 +34,7 @@ Example:
 Major Change in 1.1.1
 ---------------------
 fix issues.
+add mcv_calendarDiff attribute to set difference from ummalqura-calendar in some countries.
 
 Major Change in 1.1.0
 ---------------------
