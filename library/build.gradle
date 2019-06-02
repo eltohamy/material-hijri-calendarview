@@ -37,7 +37,7 @@ android {
 
 dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
-    implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '1.1.7'
+    implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '1.1.9'
     testImplementation 'junit:junit:4.12'
 }
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
