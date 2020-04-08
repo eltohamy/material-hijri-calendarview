@@ -1,7 +1,7 @@
 package com.github.eltohamy.materialhijricalendarview;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.SparseArrayCompat;
+import androidx.annotation.NonNull;
+import androidx.collection.SparseArrayCompat;
 
 /**
  * Use math to calculate first days of months by postion from a minium date

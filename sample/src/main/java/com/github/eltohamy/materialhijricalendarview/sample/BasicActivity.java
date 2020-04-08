@@ -1,9 +1,10 @@
 package com.github.eltohamy.materialhijricalendarview.sample;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.github.eltohamy.materialhijricalendarview.CalendarDay;
@@ -24,6 +25,7 @@ import butterknife.ButterKnife;
  */
 public class BasicActivity extends AppCompatActivity implements OnDateSelectedListener, OnMonthChangedListener {
 
+    @SuppressLint("SimpleDateFormat")
     private static DateFormat FORMATTER = new SimpleDateFormat("MMM d, y");
 
     @BindView(R.id.calendarView)
@@ -52,7 +54,7 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
 
     @Override
     public void onMonthChanged(MaterialHijriCalendarView widget, CalendarDay date) {
-        //noinspection ConstantConditions
+        //noinspection Constant Conditions
         FORMATTER.setCalendar(date.getCalendar());
 //        getSupportActionBar().setTitle(FORMATTER.format(date.getCalendar().getTime()));
         getSupportActionBar().setTitle(date.getCalendar().getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()) + " " + date.getCalendar().get(Calendar.DAY_OF_MONTH) + ", " + String.valueOf(date.getYear()));

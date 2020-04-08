@@ -1,7 +1,9 @@
-package android.support.v4.view;
+package androidx.core.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * {@linkplain #setChildrenDrawingOrderEnabledCompat(boolean)} does some reflection that isn't needed.

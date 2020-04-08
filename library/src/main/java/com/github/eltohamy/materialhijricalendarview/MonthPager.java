@@ -1,7 +1,7 @@
 package com.github.eltohamy.materialhijricalendarview;
 
 import android.content.Context;
-import android.support.v4.view.BetterViewPager;
+import androidx.core.view.BetterViewPager;
 import android.view.MotionEvent;
 
 /**

@@ -1,6 +1,6 @@
 package com.github.eltohamy.materialhijricalendarview.format;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.github.eltohamy.materialhijricalendarview.CalendarDay;
 

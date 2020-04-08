@@ -24,20 +24,20 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode project.ext.versionCodeInt
         versionName version
     }
 }
 
 dependencies {
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '1.1.7'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '1.1.9'
     testImplementation 'junit:junit:4.12'
 }
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'

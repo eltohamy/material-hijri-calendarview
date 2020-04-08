@@ -1,6 +1,6 @@
 package com.github.eltohamy.materialhijricalendarview;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * The callback used to indicate a date has been selected or deselected
