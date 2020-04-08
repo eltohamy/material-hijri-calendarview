@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/eltohamy/material-hijri-calendarview'
     gitUrl = 'hhttps://github.com/eltohamy/material-hijri-calendarview.git'
 
-    libraryVersion = '1.1.1'
+    libraryVersion = '1.1.2'
 
     developerId = 'eltohamy'
     developerName = 'El-Tohamy Allam'
