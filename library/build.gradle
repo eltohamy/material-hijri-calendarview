@@ -1,10 +1,13 @@
-apply plugin: 'com.android.library'
-
+plugins {
+    id 'com.android.library'
+    id("com.vanniktech.maven.publish") version "0.29.0" apply false
+    id("com.gradleup.nmcp") version "0.0.9" apply false
+}
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'material-hijri-calendarview'
 
-    publishedGroupId = 'com.github.eltohamy'
+    publishedGroupId = 'io.github.eltohamy'
     libraryName = 'material-hijri-calendarview'
     artifact = 'material-hijri-calendarview'
 
@@ -24,12 +27,12 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    namespace = "com.github.eltohamy.materialhijricalendarview"
+    compileSdk = 34
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 29
+        minSdkVersion 23
+        targetSdk 34
         versionCode project.ext.versionCodeInt
         versionName version
     }
@@ -37,8 +40,6 @@ android {
 
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '1.1.9'
-    testImplementation 'junit:junit:4.13'
+    implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version: '2.0.2'
+    testImplementation 'junit:junit:4.13.2'
 }
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

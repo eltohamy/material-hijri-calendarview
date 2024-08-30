@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.eltohamy.materialhijricalendarview.sample"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:supportsRtl="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        >
+        tools:ignore="RedundantLabel">
         <activity
             android:name="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-            android:label="@string/app_name"
-            >
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,14 +22,13 @@
 
         <activity
             android:name="com.github.eltohamy.materialhijricalendarview.sample.OldCalendarViewActivity"
+            android:exported="false"
             android:label="@string/title_activity_old_calendar"
-            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-            >
+            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-                />
+                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.RUN" />
@@ -41,14 +39,13 @@
 
         <activity
             android:name="com.github.eltohamy.materialhijricalendarview.sample.BasicActivity"
+            android:exported="false"
             android:label="@string/title_activity_basic"
-            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-            >
+            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-                />
+                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.RUN" />
@@ -59,14 +56,13 @@
 
         <activity
             android:name="com.github.eltohamy.materialhijricalendarview.sample.BasicActivityDecorated"
+            android:exported="false"
             android:label="@string/title_activity_decorators"
-            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-            >
+            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-                />
+                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.RUN" />
@@ -76,15 +72,14 @@
         </activity>
 
         <activity
-            android:name=".DisableDaysActivity"
+            android:name="com.github.eltohamy.materialhijricalendarview.sample.DisableDaysActivity"
+            android:exported="false"
             android:label="@string/title_activity_disable"
-            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-            >
+            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-                />
+                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.RUN" />
@@ -95,14 +90,13 @@
 
         <activity
             android:name="com.github.eltohamy.materialhijricalendarview.sample.CustomizeXmlActivity"
+            android:exported="false"
             android:label="@string/title_activity_customize_xml"
-            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-            >
+            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-                />
+                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.RUN" />
@@ -113,14 +107,13 @@
 
         <activity
             android:name="com.github.eltohamy.materialhijricalendarview.sample.CustomizeCodeActivity"
+            android:exported="false"
             android:label="@string/title_activity_customize_code"
-            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-            >
+            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-                />
+                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.RUN" />
@@ -131,14 +124,13 @@
 
         <activity
             android:name="com.github.eltohamy.materialhijricalendarview.sample.DynamicSettersActivity"
+            android:exported="false"
             android:label="@string/title_activity_dynamic_setters"
-            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-            >
+            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-                />
+                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.RUN" />
@@ -149,14 +141,13 @@
 
         <activity
             android:name="com.github.eltohamy.materialhijricalendarview.sample.DialogsActivity"
+            android:exported="false"
             android:label="@string/title_activity_dialogs"
-            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-            >
+            android:parentActivityName="com.github.eltohamy.materialhijricalendarview.sample.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity"
-                />
+                android:value="com.github.eltohamy.materialhijricalendarview.sample.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.RUN" />

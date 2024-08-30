@@ -25,11 +25,11 @@ public class DateRangeIndexTest {
     public void testBigRange() {
         Calendar minCal = Calendar.getInstance();
         minCal.set(1000, 0, 1);
-        CalendarDay minDay = CalendarDay.from(minCal);
+        CalendarDay minDay = CalendarDay.from(minCal.getTime());
 
         Calendar maxCal = Calendar.getInstance();
         maxCal.set(3000, 0, 1);
-        CalendarDay maxDay = CalendarDay.from(maxCal);
+        CalendarDay maxDay = CalendarDay.from(maxCal.getTime());
 
         DateRangeIndex index = new DateRangeIndex(minDay, maxDay);
 
@@ -37,10 +37,10 @@ public class DateRangeIndexTest {
 
         Calendar worker = CalendarUtils.getInstance();
         minDay.copyToMonthOnly(worker);
-        CalendarDay workingMonth = CalendarDay.from(worker);
+        CalendarDay workingMonth = CalendarDay.from(worker.getTime());
         int counter = 0;
         while (!maxDay.isBefore(workingMonth)) {
-            CalendarDay day = CalendarDay.from(worker);
+            CalendarDay day = CalendarDay.from(worker.getTime());
 
             assertEquals(day, index.getItem(counter));
 
@@ -48,7 +48,7 @@ public class DateRangeIndexTest {
 
             worker.add(Calendar.MONTH, 1);
             worker.set(Calendar.DAY_OF_MONTH, 1);
-            workingMonth = CalendarDay.from(worker);
+            workingMonth = CalendarDay.from(worker.getTime());
             counter++;
         }
     }
