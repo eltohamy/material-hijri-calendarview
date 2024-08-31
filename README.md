@@ -11,7 +11,7 @@ and feel, rather than 100% parity with the platform's implementation.
 Usage
 -----
 
-1. Add `implementation 'com.github.eltohamy:material-hijri-calendarview:1.1.2'` to your dependencies.
+1. Add `implementation 'io.github.eltohamy:material-hijri-calendarview:1.1.3'` to your dependencies.
 2. Add `implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version:'1.1.9'` to your dependencies.
 3. Add `MaterialHijriCalendarView` into your layouts or view hierarchy.
 4. Set a `OnDateSelectedListener` or call `MaterialHijriCalendarView.getSelectedDates()` when you need it.
