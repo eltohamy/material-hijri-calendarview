@@ -11,7 +11,7 @@ Material look and feel, rather than 100% parity with the platform's implementati
 Usage
 -----
 
-1. Add `implementation 'io.github.eltohamy:material-hijri-calendarview:2.0.0'` to your dependencies.
+1. Add `implementation 'io.github.eltohamy:material-hijri-calendarview:2.0.1'` to your dependencies.
 2. Add `implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version:'2.0.2'` to your dependencies.
 3. Call the `HijriCalendarView` composable, driven by a `HijriCalendarState`.
 
@@ -32,6 +32,20 @@ Text("Selected: ${state.selectedDates.firstOrNull() ?: "none"}")
 
 See the `sample` module for runnable examples covering decorators, disabled days,
 min/max + range selection, and live-adjustable settings.
+
+Major Change in 2.0.1
+----------------------
+Build-system refresh to match the current Android/Kotlin toolchain:
+
+* All Gradle build files (root, `library`, `sample`, `settings.gradle`) converted from Groovy
+  to Kotlin DSL (`build.gradle.kts` / `settings.gradle.kts`).
+* Android Gradle Plugin bumped to **9.4.0**, Gradle wrapper to **9.6.0**, Kotlin to **2.4.20**.
+* `compileSdk` / `targetSdk` bumped to **37** (Android 17); `minSdk` stays at **23**.
+* Compose BOM bumped to **2026.09.00**, with `androidx.core-ktx` and `androidx.annotation`
+  bumped to match.
+* JDK target stays at **17** (still the minimum/default required by AGP 9.4.0).
+
+No public API changes — this is purely a build-tooling update on top of the 2.0.0 Compose rewrite.
 
 Major Change in 2.0.0
 ----------------------
@@ -96,6 +110,20 @@ Pass one or more to `HijriCalendarView(decorators = listOf(...))`. See the `samp
 `Demos.kt` (`DecoratedScreen`, `DisableDaysScreen`) for worked examples.
 
 > The `docs/` folder documents the pre-2.0 View/XML API and is kept for historical reference only.
+
+Building from source
+---------------------
+
+As of 2.0.1, all build files are Kotlin DSL and target:
+
+* Android Gradle Plugin 9.4.0 (Gradle 9.6.0, JDK 17)
+* Kotlin 2.4.20
+* `compileSdk` / `targetSdk` 37, `minSdk` 23
+* Compose BOM 2026.09.00
+
+If you're pulling an older Android Studio/Gradle setup, update those first — AGP 9.x made a
+number of breaking changes for Kotlin projects; see JetBrains' migration notes if you hit
+plugin-resolution errors going from an 8.x project.
 
 Contributing
 ============
