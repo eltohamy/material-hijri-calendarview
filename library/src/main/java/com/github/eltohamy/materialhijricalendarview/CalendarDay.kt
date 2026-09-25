@@ -1,309 +1,87 @@
-package com.github.eltohamy.materialhijricalendarview;
+package com.github.eltohamy.materialhijricalendarview
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar;
-
-import java.util.Calendar;
-import java.util.Date;
+import android.os.Parcelable
+import com.github.eltohamy.materialhijricalendarview.CalendarUtils.day
+import com.github.eltohamy.materialhijricalendarview.CalendarUtils.month
+import com.github.eltohamy.materialhijricalendarview.CalendarUtils.year
+import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
+import kotlinx.parcelize.Parcelize
+import java.util.Date
 
 /**
- * An imputable representation of a day on a calendar
+ * An immutable representation of a single Hijri day (year/month/day), independent of time-of-day.
+ *
+ * [month] follows [java.util.Calendar] conventions (zero-based, i.e. Muharram == 0).
  */
-public final class CalendarDay implements Parcelable {
+@Parcelize
+data class CalendarDay(
+    val year: Int,
+    val month: Int,
+    val day: Int,
+) : Parcelable, Comparable<CalendarDay> {
 
-    /**
-     * Get a new instance set to today
-     *
-     * @return CalendarDay set to today's date
-     */
-    @NonNull
-    public static CalendarDay today() {
-        return from(CalendarUtils.getInstance());
+    /** This day expressed as a [Date]. */
+    val date: Date get() = calendar.time
+
+    /** A new [UmmalquraCalendar] set to this day (time-of-day cleared). */
+    val calendar: UmmalquraCalendar
+        get() = UmmalquraCalendar().also { copyTo(it) }
+
+    /** Copies this day's date fields onto [calendar], clearing time-of-day. */
+    fun copyTo(calendar: UmmalquraCalendar) {
+        calendar.clear()
+        calendar.set(year, month, day)
     }
 
-    /**
-     * Get a new instance set to the specified day
-     *
-     * @param year  new instance's year
-     * @param month new instance's month as defined by {@linkplain java.util.Calendar}
-     * @param day   new instance's day of month
-     * @return CalendarDay set to the specified date
-     */
-    @NonNull
-    public static CalendarDay from(int year, int month, int day) {
-        return new CalendarDay(year, month, day);
+    /** True if this day falls on the first day of its month. */
+    val isFirstOfMonth: Boolean get() = day == 1
+
+    /** The first day of this day's month. */
+    val monthDay: CalendarDay get() = CalendarDay(year, month, 1)
+
+    /** True if this day is within [min]..[max], inclusive. Either bound may be null (unbounded). */
+    fun isInRange(min: CalendarDay?, max: CalendarDay?): Boolean {
+        if (min != null && min > this) return false
+        if (max != null && max < this) return false
+        return true
     }
 
-    /**
-     * Get a new instance set to the specified day
-     *
-     * @param calendar {@linkplain UmmalquraCalendar} to pull date information from. Passing null will return null
-     * @return CalendarDay set to the specified date
-     */
-    public static CalendarDay from(@Nullable UmmalquraCalendar calendar) {
-        if (calendar == null) {
-            return null;
-        }
-        return from(
-                CalendarUtils.getYear(calendar),
-                CalendarUtils.getMonth(calendar),
-                CalendarUtils.getDay(calendar)
-        );
+    override fun compareTo(other: CalendarDay): Int {
+        if (year != other.year) return year - other.year
+        if (month != other.month) return month - other.month
+        return day - other.day
     }
 
-    /**
-     * Get a new instance set to the specified day
-     *
-     * @param date {@linkplain Date} to pull date information from. Passing null will return null.
-     * @return CalendarDay set to the specified date
-     */
-    public static CalendarDay from(@Nullable Date date) {
-        if (date == null) {
-            return null;
-        }
-        UmmalquraCalendar calendar=new UmmalquraCalendar();
-        calendar.setTime(date);
-        return from(calendar);
+    /** Number of whole calendar months between this day's month and [other]'s month (this - other). */
+    fun monthsUntil(other: CalendarDay): Int =
+        (other.year - year) * 12 + (other.month - month)
+
+    /** This day's month, offset by [months] (may roll over years). */
+    fun plusMonths(months: Int): CalendarDay {
+        val total = year * 12 + month + months
+        val newYear = Math.floorDiv(total, 12)
+        val newMonth = Math.floorMod(total, 12)
+        return CalendarDay(newYear, newMonth, 1)
     }
 
-    private final int year;
-    private final int month;
-    private final int day;
+    override fun toString(): String = "CalendarDay{$year-$month-$day}"
 
-    /**
-     * Cache for calls to {@linkplain #getCalendar()}
-     */
-    private transient UmmalquraCalendar _calendar;
+    companion object {
+        /** Today, in the Hijri calendar. */
+        fun today(): CalendarDay = from(CalendarUtils.todayCalendar())
 
-    /**
-     * Cache for calls to {@linkplain #getDate()}
-     */
-    private transient Date _date;
+        fun from(year: Int, month: Int, day: Int): CalendarDay = CalendarDay(year, month, day)
 
-    /**
-     * Initialized to the current day
-     *
-     * @see CalendarDay#today()
-     */
-    @Deprecated
-    public CalendarDay() {
-        this(CalendarUtils.getInstance());
-    }
-
-    /**
-     * @param calendar source to pull date information from for this instance
-     * @see CalendarDay#from(UmmalquraCalendar)
-     */
-    @Deprecated
-    public CalendarDay(UmmalquraCalendar calendar) {
-        this(
-                CalendarUtils.getYear(calendar),
-                CalendarUtils.getMonth(calendar),
-                CalendarUtils.getDay(calendar)
-        );
-    }
-
-    /**
-     * @param year  new instance's year
-     * @param month new instance's month as defined by {@linkplain java.util.Calendar}
-     * @param day   new instance's day of month
-     * @see CalendarDay#from(UmmalquraCalendar)
-     */
-    @Deprecated
-    public CalendarDay(int year, int month, int day) {
-        this.year = year;
-        this.month = month;
-        this.day = day;
-    }
-
-//    /**
-//     * @param date source to pull date information from for this instance
-//     * @see CalendarDay#from(Date)
-//     */
-//    @Deprecated
-//    public CalendarDay(Date date) {
-//        UmmalquraCalendar calendar=new UmmalquraCalendar();
-//        calendar.setTime(date);
-//        this(calendar);
-//    }
-
-    /**
-     * Get the year
-     *
-     * @return the year for this day
-     */
-    public int getYear() {
-        return year;
-    }
-
-    /**
-     * Get the month, represented by values from {@linkplain Calendar}
-     *
-     * @return the month of the year as defined by {@linkplain Calendar}
-     */
-    public int getMonth() {
-        return month;
-    }
-
-    /**
-     * Get the day
-     *
-     * @return the day of the month for this day
-     */
-    public int getDay() {
-        return day;
-    }
-
-    /**
-     * Get this day as a {@linkplain Date}
-     *
-     * @return a date with this days information
-     */
-    @NonNull
-    public Date getDate() {
-        if (_date == null) {
-            _date = getCalendar().getTime();
-        }
-        return _date;
-    }
-
-    /**
-     * Get this day as a {@linkplain Calendar}
-     *
-     * @return a new calendar instance with this day information
-     */
-    @NonNull
-    public UmmalquraCalendar getCalendar() {
-        if (_calendar == null) {
-            _calendar = new UmmalquraCalendar();
-            _calendar.setTime(CalendarUtils.getInstance().getTime());
-            copyTo(_calendar);
-        }
-        return _calendar;
-    }
-
-    void copyToMonthOnly(@NonNull Calendar calendar) {
-        calendar.clear();
-        calendar.set(year, month, 1);
-    }
-
-    /**
-     * Copy this day's information to the given calendar instance
-     *
-     * @param calendar calendar to set date information to
-     */
-    public void copyTo(@NonNull UmmalquraCalendar calendar) {
-        calendar.clear();
-        calendar.set(year, month, day);
-    }
-
-    /**
-     * Determine if this day is within a specified range
-     *
-     * @param minDate the earliest day, may be null
-     * @param maxDate the latest day, may be null
-     * @return true if the between (inclusive) the min and max dates.
-     */
-    public boolean isInRange(@Nullable CalendarDay minDate, @Nullable CalendarDay maxDate) {
-        return !(minDate != null && minDate.isAfter(this)) &&
-                !(maxDate != null && maxDate.isBefore(this));
-    }
-
-    /**
-     * Determine if this day is before the given instance
-     *
-     * @param other the other day to test
-     * @return true if this is before other, false if equal or after
-     */
-    public boolean isBefore(@NonNull CalendarDay other) {
-        if (other == null) {
-            throw new IllegalArgumentException("other cannot be null");
-        }
-        if (year == other.year) {
-            return ((month == other.month) ? (day < other.day) : (month < other.month));
-        } else {
-            return year < other.year;
-        }
-    }
-
-    /**
-     * Determine if this day is after the given instance
-     *
-     * @param other the other day to test
-     * @return true if this is after other, false if equal or before
-     */
-    public boolean isAfter(@NonNull CalendarDay other) {
-        if (other == null) {
-            throw new IllegalArgumentException("other cannot be null");
+        fun from(calendar: UmmalquraCalendar?): CalendarDay {
+            requireNotNull(calendar) { "calendar cannot be null" }
+            return CalendarDay(calendar.year, calendar.month, calendar.day)
         }
 
-        if (year == other.year) {
-            return (month == other.month) ? (day > other.day) : (month > other.month);
-        } else {
-            return year > other.year;
+        fun from(date: Date?): CalendarDay? {
+            date ?: return null
+            val calendar = UmmalquraCalendar()
+            calendar.time = date
+            return from(calendar)
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        CalendarDay that = (CalendarDay) o;
-
-        return day == that.day && month == that.month && year == that.year;
-    }
-
-    @Override
-    public int hashCode() {
-        return hashCode(year, month, day);
-    }
-
-    private static int hashCode(int year, int month, int day) {
-        //Should produce hashes like "20150401"
-        return (year * 10000) + (month * 100) + day;
-    }
-
-    @Override
-    public String toString() {
-        return "CalendarDay{" + year + "-" + month + "-" + day + "}";
-    }
-
-    /*
-     * Parcelable Stuff
-     */
-
-    public CalendarDay(Parcel in) {
-        this(in.readInt(), in.readInt(), in.readInt());
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(year);
-        dest.writeInt(month);
-        dest.writeInt(day);
-    }
-
-    public static final Creator<CalendarDay> CREATOR = new Creator<CalendarDay>() {
-        public CalendarDay createFromParcel(Parcel in) {
-            return new CalendarDay(in);
-        }
-
-        public CalendarDay[] newArray(int size) {
-            return new CalendarDay[size];
-        }
-    };
 }

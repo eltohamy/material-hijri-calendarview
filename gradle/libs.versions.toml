@@ -1,0 +1,36 @@
+[versions]
+agp = "9.4.1"
+kotlin = "2.4.20"
+ummalqura-calendar = "2.0.2"
+core-ktx = "1.19.1"
+activity-compose = "1.13.0"
+material = "1.14.0"
+compose-bom = "2026.09.00"
+maven-publish = "0.37.0"
+annotation = "1.11.0"
+junit = "4.13.2"
+
+[libraries]
+ummalqura-calendar = { module = "com.github.msarhan:ummalqura-calendar", version.ref = "ummalqura-calendar" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+google-material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui" }
+androidx-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+junit = { module = "junit:junit", version.ref = "junit" }
+androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }

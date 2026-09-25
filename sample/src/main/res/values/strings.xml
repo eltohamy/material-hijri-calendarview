@@ -1,41 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Material Hijri CalendarView Samples</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_basic">Basic Example</string>
-    <string name="title_activity_disable">Disabled Days Example</string>
-    <string name="title_activity_customize_xml">XML Customization Example</string>
-    <string name="title_activity_customize_code">Programmatic Customization Example</string>
-    <string name="title_activity_dynamic_setters">Dynamic Setters Test</string>
-    <string name="title_activity_old_calendar">Old CalendarView</string>
-    <string name="title_activity_dialogs">Calendar in Dialogs</string>
-    <string name="title_activity_decorators">Calendar with Decorators</string>
-
-    <string-array name="custom_weekdays">
-        <item>Su</item>
-        <item>M</item>
-        <item>Tu</item>
-        <item>W</item>
-        <item>Th</item>
-        <item>F</item>
-        <item>Sa</item>
-    </string-array>
-
-    <string-array name="custom_months">
-        <item>Muharram</item>
-        <item>Safar</item>
-        <item>Rabi\' I</item>
-        <item>Rabi\' II</item>
-        <item>Jumada I</item>
-        <item>Jumada II</item>
-        <item>Rajab</item>
-        <item>Sha\'ban</item>
-        <item>Ramadan</item>
-        <item>Shawwal</item>
-        <item>Dhu al-Qi‘dah</item>
-        <item>Dhu al-Hijjah</item>
-    </string-array>
-
 </resources>

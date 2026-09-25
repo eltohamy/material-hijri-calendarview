@@ -1,14 +1,7 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/sample_primary</item>
-        <item name="colorPrimaryDark">@color/sample_primary</item>
-        <item name="colorAccent">@color/sample_accent</item>
-    </style>
-
-    <style name="CustomDayTextAppearance" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@color/mcv_text_date_light</item>
-    </style>
+    <!-- Only used as the pre-Compose window theme (status bar, splash background, etc);
+         actual UI theming is done in Compose via SampleTheme.kt. -->
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar" />
 
 </resources>

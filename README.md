@@ -3,33 +3,43 @@
 Material Hijri Calendar View [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Material%20Hijri%20Calendar%20View-blue.svg?style=flat)](https://github.com/eltohamy/material-hijri-calendarview/)
 ======================
 
-A Material design back port of Android's Hijri CalendarView. The goal is to have a Material look
-and feel, rather than 100% parity with the platform's implementation.
+A Material 3, Jetpack Compose backport of Android's Hijri CalendarView. The goal is to have a
+Material look and feel, rather than 100% parity with the platform's implementation.
 
 <img src="/images/screencast.gif" alt="Demo Screen Capture" width="300px" />
 
 Usage
 -----
 
-1. Add `implementation 'io.github.eltohamy:material-hijri-calendarview:1.1.3'` to your dependencies.
-2. Add `implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version:'1.1.9'` to your dependencies.
-3. Add `MaterialHijriCalendarView` into your layouts or view hierarchy.
-4. Set a `OnDateSelectedListener` or call `MaterialHijriCalendarView.getSelectedDates()` when you need it.
-
-[Javadoc Available Here](https://github.com/eltohamy/material-hijri-calendarview/)
+1. Add `implementation 'io.github.eltohamy:material-hijri-calendarview:2.0.0'` to your dependencies.
+2. Add `implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version:'2.0.2'` to your dependencies.
+3. Call the `HijriCalendarView` composable, driven by a `HijriCalendarState`.
 
 Example:
 
-```xml
-<com.github.eltohamy.materialhijricalendarview.MaterialHijriCalendarView
-    android:id="@+id/calendarView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:mcv_showOtherDates="all"
-    app:mcv_selectionColor="#00F"
-    />
+```kotlin
+val state = rememberHijriCalendarState(
+    selectionMode = HijriSelectionMode.SINGLE,
+)
+
+HijriCalendarView(
+    state = state,
+    showOtherDates = HijriShowOtherDates.All,
+)
+
+Text("Selected: ${state.selectedDates.firstOrNull() ?: "none"}")
 ```
+
+See the `sample` module for runnable examples covering decorators, disabled days,
+min/max + range selection, and live-adjustable settings.
+
+Major Change in 2.0.0
+----------------------
+Full rewrite from a Java `View`/XML-attribute widget to Kotlin + Jetpack Compose
+(`HijriCalendarView` + `HijriCalendarState`). See "Customization" below for the new,
+composable-parameter based equivalents of the old `mcv_*` XML attributes and
+imperative setters.
+
 Major Change in 1.1.2
 ---------------------
 migrate to AndroidX
@@ -65,24 +75,27 @@ that will override everything and set the view to that size.
 Customization
 -------------
 
-One of the aims of this library is to be customizable. The many options include:
+One of the aims of this library is to be customizable. Everything that used to be an XML
+`mcv_*` attribute or an imperative setter is now a composable parameter or a field on
+`HijriCalendarState`:
 
-* [Define the view's width and height in terms of tile size](docs/CUSTOMIZATION.md#tile-size)
-* [Single or Multiple date selection, or disabling selection entirely](docs/CUSTOMIZATION.md#date-selection)
-* [Showing dates from other months or those out of range](docs/CUSTOMIZATION.md#showing-other-dates)
-* [Setting the first day of the week](docs/CUSTOMIZATION.md#first-day-of-the-week)
-* [Show only a range of dates](docs/CUSTOMIZATION.md#date-ranges)
-* [Customize the top bar](docs/CUSTOMIZATION.md#topbar-options)
-* [Custom labels for the header, weekdays, or individual days](docs/CUSTOMIZATION.md#custom-labels)
+* Tile size &rarr; `HijriCalendarView(tileSize = 44.dp, ...)`
+* Selection mode (single/multiple/range/none) &rarr; `HijriSelectionMode` passed to `rememberHijriCalendarState`
+* Showing dates from other months / out of range / decorator-disabled days &rarr; `HijriShowOtherDates`
+* First day of the week &rarr; `HijriCalendarState.firstDayOfWeek`
+* Restricting to a range of dates &rarr; `minDate`/`maxDate` on `rememberHijriCalendarState`
+* Hiding the top bar / disabling paging &rarr; `showTopBar` / `pagingEnabled`
+* Custom header, weekday and day labels &rarr; `titleFormatter`, `weekDayFormatter`, `dayFormatter`
+* Colors (selection, arrows, text, today indicator) &rarr; `HijriCalendarColors` / `HijriCalendarDefaults.colors()`
 
-### Events, Highlighting, Custom Selectors, and More!
+### Events, Highlighting, and More
 
-All of this and more can be done via the decorator api. Please check out the [decorator documentation](docs/DECORATORS.md).
+All of this is done via `HijriDayDecorator`: a function `(CalendarDay) -> HijriDayStyle?` that
+can disable a day, recolor its background/text, or add a small dot (e.g. for an event marker).
+Pass one or more to `HijriCalendarView(decorators = listOf(...))`. See the `sample` module's
+`Demos.kt` (`DecoratedScreen`, `DisableDaysScreen`) for worked examples.
 
-### Custom Selectors and Colors
-
-If you provide custom drawables or colors, you'll want to make sure they respond to state.
-Check out the [documentation for custom states](docs/CUSTOM_SELECTORS.md).
+> The `docs/` folder documents the pre-2.0 View/XML API and is kept for historical reference only.
 
 Contributing
 ============

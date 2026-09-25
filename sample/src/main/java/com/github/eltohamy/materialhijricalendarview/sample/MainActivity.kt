@@ -1,97 +1,106 @@
-package com.github.eltohamy.materialhijricalendarview.sample;
+@file:OptIn(ExperimentalMaterial3Api::class)
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+package com.github.eltohamy.materialhijricalendarview.sample
 
-import java.util.List;
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 
-/**
- * Routing Activity for other samples
- */
-public class MainActivity extends AppCompatActivity {
+/** Demo screens shown from the sample's home list. */
+private enum class Demo(val title: String, val description: String) {
+    Basic("Basic", "Single-date selection with default styling."),
+    Decorated("Decorators", "Highlighting weekends and marking event days."),
+    DisableDays("Disabled days", "Disabling specific days (e.g. every Friday)."),
+    Range("Min/max + range", "Bounding the selectable range and picking a date range."),
+    DynamicSetters("Dynamic setters", "Changing selection mode, first day of week, and topbar visibility live."),
+}
 
-    private static final String CATEGORY_SAMPLE = "com.github.eltohamy.materialhijricalendarview.sample.SAMPLE";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        RecyclerView list = (RecyclerView) findViewById(R.id.list);
-        list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(new ResolveInfoAdapter(this, getAllSampleActivities()));
-    }
-
-    private List<ResolveInfo> getAllSampleActivities() {
-        Intent filter = new Intent();
-        filter.setAction(Intent.ACTION_RUN);
-        filter.addCategory(CATEGORY_SAMPLE);
-        return getPackageManager().queryIntentActivities(filter, 0);
-    }
-
-    private void onRouteClicked(ResolveInfo route) {
-        ActivityInfo activity = route.activityInfo;
-        ComponentName name = new ComponentName(activity.applicationInfo.packageName, activity.name);
-        startActivity(new Intent(Intent.ACTION_VIEW).setComponent(name));
-    }
-
-    class ResolveInfoAdapter extends RecyclerView.Adapter<ResolveInfoAdapter.ResolveInfoViewHolder> {
-
-        private final PackageManager pm;
-        private final LayoutInflater inflater;
-        private final List<ResolveInfo> samples;
-
-        private ResolveInfoAdapter(Context context, List<ResolveInfo> resolveInfos) {
-            this.samples = resolveInfos;
-            this.inflater = LayoutInflater.from(context);
-            this.pm = context.getPackageManager();
-        }
-
-        @Override
-        public ResolveInfoViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view = inflater.inflate(R.layout.item_route, viewGroup, false);
-            return new ResolveInfoViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(ResolveInfoViewHolder viewHolder, int i) {
-            ResolveInfo item = samples.get(i);
-            viewHolder.textView.setText(item.loadLabel(pm));
-        }
-
-        @Override
-        public int getItemCount() {
-            return samples.size();
-        }
-
-        class ResolveInfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-            public final TextView textView;
-
-            public ResolveInfoViewHolder(View view) {
-                super(view);
-                this.textView = (TextView) view.findViewById(android.R.id.text1);
-                view.setOnClickListener(this);
-            }
-
-            @Override
-            public void onClick(@NonNull View v) {
-                onRouteClicked(samples.get(getAdapterPosition()));
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            SampleTheme {
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    var selected by remember { mutableStateOf<Demo?>(null) }
+                    Crossfade(targetState = selected, label = "demo") { demo ->
+                        if (demo == null) {
+                            HomeScreen(onSelect = { selected = it })
+                        } else {
+                            DemoScaffold(title = demo.title, onBack = { selected = null }) {
+                                when (demo) {
+                                    Demo.Basic -> BasicScreen()
+                                    Demo.Decorated -> DecoratedScreen()
+                                    Demo.DisableDays -> DisableDaysScreen()
+                                    Demo.Range -> RangeScreen()
+                                    Demo.DynamicSetters -> DynamicSettersScreen()
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
+}
 
+@androidx.compose.material3.ExperimentalMaterial3Api
+@Composable
+private fun HomeScreen(onSelect: (Demo) -> Unit) {
+    Scaffold(topBar = { TopAppBar(title = { Text("Material Hijri CalendarView") }) }) { padding ->
+        LazyColumn(modifier = Modifier.padding(padding)) {
+            items(Demo.entries) { demo ->
+                ListItem(
+                    headlineContent = { Text(demo.title) },
+                    supportingContent = { Text(demo.description) },
+                    modifier = Modifier.clickable { onSelect(demo) },
+                )
+            }
+        }
+    }
+}
+
+@androidx.compose.material3.ExperimentalMaterial3Api
+@Composable
+private fun DemoScaffold(title: String, onBack: () -> Unit, content: @Composable () -> Unit) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(title) },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+            )
+        },
+    ) { padding ->
+        Box(modifier = Modifier.padding(padding)) {
+            content()
+        }
+    }
 }
