@@ -47,7 +47,7 @@ mavenPublishing {
     signAllPublications()
 
     coordinates(
-        "io.github.eltohamy",
+        "com.github.eltohamy",
         "material-hijri-calendarview",
         "2.0.1"
     )

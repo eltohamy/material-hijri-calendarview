@@ -11,7 +11,7 @@ Material look and feel, rather than 100% parity with the platform's implementati
 Usage
 -----
 
-1. Add `implementation 'io.github.eltohamy:material-hijri-calendarview:2.0.1'` to your dependencies.
+1. Add `implementation 'com.github.eltohamy:material-hijri-calendarview:2.0.1'` to your dependencies.
 2. Add `implementation group: 'com.github.msarhan', name: 'ummalqura-calendar', version:'2.0.2'` to your dependencies.
 3. Call the `HijriCalendarView` composable, driven by a `HijriCalendarState`.
 
